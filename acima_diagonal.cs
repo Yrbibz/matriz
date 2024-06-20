@@ -1,5 +1,5 @@
-﻿using System;
-
+using System;
+ 
 class Program
 {
     static void Main()
@@ -8,95 +8,35 @@ class Program
 
         do
         {
-            Console.Write("Qual a ordem da matriz? (máximo = 10): ");
+            Console.Write("Qual a ordem da matriz (No máximo 10)?: ");
             N = int.Parse(Console.ReadLine());
-        } while (N > 10 || N <=0 );
+        } while (N > 10);
 
-        double[,] matriz = new double[N, N];
+        int[,] matriz = new int[N, N];
 
         for (int i = 0; i < N; i++)
         {
             for (int j = 0; j < N; j++)
             {
-                Console.Write("Elemento ["+ i + "," + j + "]: ");
-                matriz[i, j] = double.Parse(Console.ReadLine());
+                Console.Write("Elemento [" + i + "," + j + "]: ");
+                matriz[i, j] = int.Parse(Console.ReadLine());
             }
         }
 
-        double somapo = 0;
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < N; j++)
-            {
-                if (matriz[i, j] > 0)
-                {
-                    somapo += matriz[i, j];
-                }
-            }
-        }
-        Console.WriteLine("Soma dos positivos: " + somapo);
-
-        
-        Console.Write("Escolha uma linha: ");
-        int linha = int.Parse(Console.ReadLine());
-
-        if (linha >= 0 && linha < N)
-        {
-            Console.Write("Linha escolhida: " + linha);
-            for (int j = 0; j < N; j++)
-            {
-                Console.Write(matriz[linha, j] + " ");
-            }
-            Console.WriteLine();
-        }
-        else
-        {
-            Console.WriteLine("Índice de linha inválido.");
-        }
-
-        Console.Write("Escolha uma coluna: ");
-         int coluna = int.Parse(Console.ReadLine());
-
-        if (coluna >= 0 && coluna < N)
-        {
-            Console.Write("Coluna escolhida: " + coluna + ": ");
-            for (int i = 0; i < N; i++)
-            {
-                Console.Write(matriz[i, coluna] + " ");
-            }
-            Console.WriteLine();
-        }
-        else
-        {
-            Console.WriteLine("Índice de coluna inválido.");
-        }
-
-        Console.Write("Diagonal principal: ");
-        for (int i = 0; i < N; i++)
-        {
-            Console.Write(matriz[i, i] + " ");
-        }
         Console.WriteLine();
+        Console.WriteLine("Maior elemento de cada linha:");
 
         for (int i = 0; i < N; i++)
         {
-            for (int j = 0; j < N; j++)
+            int maiorElemento = matriz[i, 0];
+            for (int j = 1; j < N; j++)
             {
-                if (matriz[i, j] < 0)
+                if (matriz[i, j] > maiorElemento)
                 {
-                    matriz[i, j] = Math.Pow(matriz[i, j], 2);
+                    maiorElemento = matriz[i, j];
                 }
             }
-        }
-
-        Console.WriteLine("Matriz alterada:");
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < N; j++)
-            {
-                Console.Write(matriz[i, j] + " ");
-            }
-            Console.WriteLine();
+            Console.WriteLine(maiorElemento);
         }
     }
 }
