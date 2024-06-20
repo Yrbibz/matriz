@@ -1,5 +1,5 @@
 using System;
- 
+
 class Program
 {
     static void Main()
@@ -8,7 +8,7 @@ class Program
 
         do
         {
-            Console.Write("Qual a ordem da matriz (No máximo 10)?: ");
+            Console.Write("Qual a ordem da matriz?: ");
             N = int.Parse(Console.ReadLine());
         } while (N > 10);
 
@@ -22,21 +22,14 @@ class Program
                 matriz[i, j] = int.Parse(Console.ReadLine());
             }
         }
-
-        Console.WriteLine();
-        Console.WriteLine("Maior elemento de cada linha:");
-
+        int soma = 0;
         for (int i = 0; i < N; i++)
         {
-            int maiorElemento = matriz[i, 0];
-            for (int j = 1; j < N; j++)
+            for (int j = i + 1; j < N; j++)
             {
-                if (matriz[i, j] > maiorElemento)
-                {
-                    maiorElemento = matriz[i, j];
-                }
+                soma += matriz[i, j];
             }
-            Console.WriteLine(maiorElemento);
         }
+
+        Console.WriteLine("Soma dos elementos acima da diagonal principal: " + soma);
     }
-}
